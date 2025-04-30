@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app 
+    container_name: node_app 
+    networks:
+      - test_network 
+
+  tester:
+    build: ./test 
+    container_name: test_runner 
+    depends_on:
+      - app 
+    networks:
+      - test_network
+ 
+
+networks:
+  test_network: 
+    driver: bridge
